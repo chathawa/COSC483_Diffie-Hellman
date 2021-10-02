@@ -25,7 +25,7 @@ So the new bounds a' and b' are (a - 3) / 4 and (b - 3) / 4, respectively.
 
 from random import randrange
 from sys import stderr
-from sympy import isprime
+from Crypto.Util.number import isPrime
 
 
 _LOWER_BOUND, _UPPER_BOUND = (
@@ -49,7 +49,7 @@ def strong(debug_int=None) -> int:
     k, q, p = None, None, 1
     num_iter = 0
 
-    while not isprime(p):
+    while not isPrime(p):
         num_iter += 1
         k = randrange(_LOWER_BOUND, _UPPER_BOUND)
         q = 2 * k + 1
