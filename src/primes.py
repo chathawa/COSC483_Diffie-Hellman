@@ -25,44 +25,32 @@ So the new bounds a' and b' are (a - 3) / 4 and (b - 3) / 4, respectively.
 
 from random import randrange
 from sys import stderr
+from time import time
 from Crypto.Util.number import isPrime
 
 
 _LOWER_BOUND, _UPPER_BOUND = (
-        2**1021,
-        2**2046
+        2**1023,
+        2**2048
 )
 
 
-def _debug_strong(k, q, p, num_iter):
-    stderr.write('\n'.join((
-        f"{symbol}={value}" for symbol, value in (
-            ("num_iter", num_iter),
-            ('k', k),
-            ('q', q),
-            ('p', p)
-        )
-    )) + '\n')
-
-
 def strong(debug_int=None) -> int:
-    k, q, p = None, 1, 1
+    p = 1
     num_iter = 0
+    start = time()
 
-    while not isPrime(p) or not isPrime(q):
+    while p % 2 == 0 or not isPrime(p) or not isPrime((p - 1) / 2):
         num_iter += 1
-        k = randrange(_LOWER_BOUND, _UPPER_BOUND)
-        q = 2 * k + 1
-        p = 2 * q + 1
+        p = randrange(_LOWER_BOUND, _UPPER_BOUND)
 
-        if (
-            debug_int is not None and
-            debug_int > 0 and
-            num_iter % debug_int == 0
-        ):
-            _debug_strong(k, q, p, num_iter)
-
-    if debug_int == -1:
-        _debug_strong(k, q, p, num_iter)
-
+        if debug_int is not None num_iter % debug_int == 0:
+            end = time()
+            stderr.write('\n'.join((
+                f"Iteration: {num_iter}"
+                f"Last {debug_int} iterations elapsed time: {end - start} sec",
+                f"p: {p}"
+            )) + '\n')
+            start = time()
     return p
+
