@@ -16,7 +16,7 @@ def main():
 
     print('\n'.join((
         f"p = {p}",
-        f"bits = {floor(log2(p)) + 1}"
+        f"bits = {floor(log2(p)) + 1}",
         f"elapsed time = {end - start} sec"
     )))
 
