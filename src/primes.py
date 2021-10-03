@@ -63,6 +63,9 @@ def strong(debug_int=None) -> int:
             start = time()
         
         p = randrange(_LOWER_BOUND, _UPPER_BOUND)
-        primality.append((isPrime(p), isPrime((p - 1) // 2))
+        primality.append((
+            isPrime(p),
+            isPrime((p - 1) // 2)
+        ))
     return p
 
