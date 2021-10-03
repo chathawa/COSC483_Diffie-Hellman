@@ -46,10 +46,10 @@ def _debug_strong(k, q, p, num_iter):
 
 
 def strong(debug_int=None) -> int:
-    k, q, p = None, None, 1
+    k, q, p = None, 1, 1
     num_iter = 0
 
-    while not isPrime(p):
+    while not isPrime(p) or not isPrime(q):
         num_iter += 1
         k = randrange(_LOWER_BOUND, _UPPER_BOUND)
         q = 2 * k + 1
