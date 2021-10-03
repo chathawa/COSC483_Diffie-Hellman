@@ -38,19 +38,31 @@ _LOWER_BOUND, _UPPER_BOUND = (
 def strong(debug_int=None) -> int:
     p = 1
     num_iter = 0
+    primality = [(False, False)]
+
     start = time()
-
-    while p % 2 == 0 or not isPrime(p) or not isPrime((p - 1) // 2):
+    while p % 2 == 0 or False in primality[-1]:
         num_iter += 1
-        p = randrange(_LOWER_BOUND, _UPPER_BOUND)
 
-        if debug_int is not None and num_iter % debug_int == 0:
+        if debug_int is not None and 0 < num_iter and num_iter % debug_int == 0:
             end = time()
+            p_rate, q_rate = 0, 0
+            for p_prime, q_prime in primality:
+                if p_prime:
+                    p_rate += 1
+                if q_prime:
+                    q_rate += 1
+
             stderr.write('\n'.join((
                 f"Iteration: {num_iter}",
                 f"Last {debug_int} iterations elapsed time: {end - start} sec",
-                f"p: {p}"
+                f"Primality rate for p = {100 * p_rate / len(primality):.3f}%",
+                f"Primality rate for q = {100 * q_rate / len(primality):.3f}%"
             )) + '\n')
+            primality = []
             start = time()
+        
+        p = randrange(_LOWER_BOUND, _UPPER_BOUND)
+        primality.append((isPrime(p), isPrime((p - 1) // 2))
     return p
 
