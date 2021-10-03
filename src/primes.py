@@ -40,7 +40,7 @@ def strong(debug_int=None) -> int:
     num_iter = 0
     start = time()
 
-    while p % 2 == 0 or not isPrime(p) or not isPrime((p - 1) / 2):
+    while p % 2 == 0 or not isPrime(p) or not isPrime((p - 1) // 2):
         num_iter += 1
         p = randrange(_LOWER_BOUND, _UPPER_BOUND)
 
