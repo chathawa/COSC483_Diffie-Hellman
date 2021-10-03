@@ -42,7 +42,7 @@ def _debug_strong(k, q, p, num_iter):
             ('q', q),
             ('p', p)
         )
-    )))
+    )) + '\n')
 
 
 def strong(debug_int=None) -> int:
