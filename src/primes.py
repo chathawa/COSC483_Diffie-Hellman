@@ -47,7 +47,7 @@ def strong(debug_int=None) -> int:
         if debug_int is not None and num_iter % debug_int == 0:
             end = time()
             stderr.write('\n'.join((
-                f"Iteration: {num_iter}"
+                f"Iteration: {num_iter}",
                 f"Last {debug_int} iterations elapsed time: {end - start} sec",
                 f"p: {p}"
             )) + '\n')
