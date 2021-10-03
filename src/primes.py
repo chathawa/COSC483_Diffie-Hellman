@@ -44,7 +44,7 @@ def strong(debug_int=None) -> int:
         num_iter += 1
         p = randrange(_LOWER_BOUND, _UPPER_BOUND)
 
-        if debug_int is not None num_iter % debug_int == 0:
+        if debug_int is not None and num_iter % debug_int == 0:
             end = time()
             stderr.write('\n'.join((
                 f"Iteration: {num_iter}"
